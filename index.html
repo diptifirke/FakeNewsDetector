@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TruthLens AI – Premium AI-powered fake news detection, credibility scoring, deepfake analysis, and rumor tracking SaaS platform.">
+  <title>TruthLens AI - Detect Fake News & Fact Verify</title>
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- APP SIDEBAR -->
+    <aside class="app-sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M12 6V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text">TruthLens AI</span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a class="nav-link active" href="#home" data-target="home">
+          <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-4v-6h-4v6H5a1 1 0 0 1-1-1V9.5z"/></svg>
+          <span>Home</span>
+        </a>
+        <a class="nav-link" href="#detect" data-target="detect">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Fake News Detector</span>
+        </a>
+        <a class="nav-link" href="#trending" data-target="trending">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Trending News</span>
+        </a>
+        <a class="nav-link" href="#history" data-target="history">
+          <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>News History</span>
+        </a>
+        <a class="nav-link" href="#community" data-target="community">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 14v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Community Verify</span>
+        </a>
+        <a class="nav-link" href="#chatbot" data-target="chatbot">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>AI Explanation Bot</span>
+        </a>
+        <a class="nav-link" href="#dashboard" data-target="dashboard">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" href="#profile" data-target="profile">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          <span>Profile & Leaderboard</span>
+        </a>
+        <a class="nav-link" href="#about" data-target="about">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>About</span>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile-summary" id="sidebar-user-block">
+          <div class="avatar-container">
+            <div class="avatar" id="sidebar-avatar">D</div>
+            <div class="avatar-badge"></div>
+          </div>
+          <div class="user-details">
+            <span class="user-name" id="sidebar-user-name">Guest User</span>
+            <span class="user-points" id="sidebar-user-points">0 XP • Level 1</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- APP HEADER -->
+    <header class="app-header">
+      <div class="header-left">
+        <button class="mobile-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Sidebar">
+          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="page-title" id="current-page-title">Home</h1>
+      </div>
+      
+      <div class="header-right">
+        <!-- Language Switcher -->
+        <select class="lang-switch" id="lang-selector" aria-label="Select Language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="mr">मराठी (Marathi)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+        </select>
+        
+        <!-- Dark/Light Theme Button -->
+        <button class="theme-switch-btn" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+          <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <span id="theme-text">Dark Mode</span>
+        </button>
+        
+        <!-- Login Trigger Button -->
+        <button class="auth-header-btn" id="auth-main-btn">Sign In</button>
+      </div>
+    </header>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="app-main">
+      
+      <!-- ============================================== -->
+      <!-- 1. HOME VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view active" id="home-page">
+        <div class="card animate-fade-in" style="background: var(--gradient-hero); border: none; padding: 48px; color: white;">
+          <h2 style="font-family: var(--font-heading); font-size: 38px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; text-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            TruthLens AI – Detect Fake News Before You Share
+          </h2>
+          <p style="font-size: 16px; max-width: 700px; line-height: 1.6; opacity: 0.9; margin-bottom: 32px;">
+            Analyze articles, URLs, screenshots, and videos using advanced AI-powered fact checking, credibility analysis, and deepfake verification. Protect your feed and share responsibly.
+          </p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <button class="btn btn-accent btn-landing-start" data-action="go-detect" style="box-shadow: 0 4px 12px rgba(16,185,129,0.3);">Analyze News Now</button>
+            <button class="btn btn-secondary btn-landing-trending" data-action="go-trending" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); color: white;">Explore Trending News</button>
+          </div>
+        </div>
+
+        <!-- Home Input Console -->
+        <div class="card animate-fade-in" style="animation-delay: 0.1s;">
+          <h3 class="card-title">
+            <svg viewBox="0 0 24 24" style="width:20px; stroke:var(--primary-color); fill:none; stroke-width:2;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Quick Verification Engine
+          </h3>
+          
+          <!-- Tab Navigation -->
+          <div class="hero-input-tabs">
+            <button class="hero-tab-btn active" data-tab="tab-text">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Paste Article</span>
+            </button>
+            <button class="hero-tab-btn" data-tab="tab-url">
+              <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <span>Paste URL</span>
+            </button>
+            <button class="hero-tab-btn" data-tab="tab-pdf">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>Upload PDF</span>
+            </button>
+            <button class="hero-tab-btn" data-tab="tab-image">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Screenshot / Image</span>
+            </button>
+            <button class="hero-tab-btn" data-tab="tab-video">
+              <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <span>Upload Video</span>
+            </button>
+          </div>
+
+          <!-- Tab Contents -->
+          <div class="tab-pane active" id="tab-text">
+            <div class="form-group">
+              <label for="home-text-input" class="form-label">Article Text Content</label>
+              <textarea id="home-text-input" class="form-textarea" rows="5" placeholder="Copy and paste the full article or social media post content here..."></textarea>
+            </div>
+          </div>
+          
+          <div class="tab-pane" id="tab-url">
+            <div class="form-group">
+              <label for="home-url-input" class="form-label">Article or Post URL</label>
+              <input type="url" id="home-url-input" class="form-input" placeholder="https://example.com/news/article-slug">
+            </div>
+          </div>
+          
+          <div class="tab-pane" id="tab-pdf">
+            <div class="file-upload-dragzone" data-filetype="pdf">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span class="upload-title">Choose PDF or Drag it here</span>
+              <span class="upload-subtitle">Accepts PDF documents up to 10MB</span>
+              <input type="file" accept=".pdf" style="display:none;" id="pdf-file-picker">
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-image">
+            <div class="file-upload-dragzone" data-filetype="image">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="upload-title">Select Screenshot or Image File</span>
+              <span class="upload-subtitle">Accepts PNG, JPG, WebP images</span>
+              <input type="file" accept="image/*" style="display:none;" id="image-file-picker">
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-video">
+            <div class="file-upload-dragzone" data-filetype="video">
+              <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <span class="upload-title">Select Video File for Deepfake Check</span>
+              <span class="upload-subtitle">Accepts MP4, MOV, WebM videos</span>
+              <input type="file" accept="video/*" style="display:none;" id="video-file-picker">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+            <button class="btn btn-primary" id="home-trigger-analyze-btn">Analyze Content</button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid-4 animate-fade-in" style="animation-delay: 0.2s;">
+          <div class="card" style="text-align: center;">
+            <h4 style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Articles Analyzed</h4>
+            <span class="stats-counter" data-target="1524300" style="font-size: 32px; font-family: var(--font-heading); font-weight: 800; color: var(--primary-color);">0</span>
+          </div>
+          <div class="card" style="text-align: center;">
+            <h4 style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Fake News Deflected</h4>
+            <span class="stats-counter" data-target="432900" style="font-size: 32px; font-family: var(--font-heading); font-weight: 800; color: var(--danger-color);">0</span>
+          </div>
+          <div class="card" style="text-align: center;">
+            <h4 style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Community Fact-Checkers</h4>
+            <span class="stats-counter" data-target="86150" style="font-size: 32px; font-family: var(--font-heading); font-weight: 800; color: var(--accent-color);">0</span>
+          </div>
+          <div class="card" style="text-align: center;">
+            <h4 style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Verified Whitelist Sources</h4>
+            <span class="stats-counter" data-target="1240" style="font-size: 32px; font-family: var(--font-heading); font-weight: 800; color: var(--warning-color);">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 2. FAKE NEWS DETECTION VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="detect-page">
+        <!-- Ingestion controls (Duplicates home console to allow standalone analysis page) -->
+        <div class="card" id="detect-input-card">
+          <h3 class="card-title">Analysis Ingestion Board</h3>
+          <div class="form-group">
+            <label for="detect-main-input" class="form-label">Enter News Text, URL or drop media</label>
+            <textarea id="detect-main-input" class="form-textarea" rows="4" placeholder="Paste article content, social media links, or drag/drop images or files here..."></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary btn-sm" id="detect-media-upload-btn">
+                <svg viewBox="0 0 24 24" style="width:16px; stroke:currentColor; fill:none; stroke-width:2;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Upload File / Image / Video
+              </button>
+              <input type="file" id="detect-file-picker" style="display:none;">
+              <span id="uploaded-file-name" style="font-size:13px; color:var(--text-muted); align-self:center;"></span>
+            </div>
+            <button class="btn btn-primary" id="detect-trigger-btn">Run Detection Analysis</button>
+          </div>
+        </div>
+
+        <!-- Analyzer Loading View -->
+        <div class="card" id="detect-loader-card" style="display:none;">
+          <div class="analysis-loader-wrapper">
+            <div class="loader-spinner"></div>
+            <span class="loader-text" id="loader-status-text">Scanning metadata repositories...</span>
+          </div>
+        </div>
+
+        <!-- ANALYZER RESULTS CONSOLE -->
+        <div id="detect-results-container" style="display:none; flex-direction:column; gap:32px;">
+          
+          <!-- Section 1: Overview Summary & Circle Progress -->
+          <div class="grid-2">
+            <!-- Summary card -->
+            <div class="card">
+              <h3 class="card-title">AI Summary & Assessment</h3>
+              <p id="detect-res-summary" style="line-height:1.6; font-size:14px; color:var(--text-primary); margin-bottom: 20px;">
+                Summary paragraph loaded here dynamically.
+              </p>
+              <div style="border-top:1px solid var(--divider-color); padding-top:16px;">
+                <h4 style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Reasoning & Verdict Flags:</h4>
+                <ul id="detect-res-reasons" style="list-style:none; display:flex; flex-direction:column; gap:6px; font-size:13px;">
+                  <!-- Injected checkmarks -->
+                </ul>
+              </div>
+            </div>
+
+            <!-- Gauge card -->
+            <div class="card" style="display: flex; justify-content: center; align-items: center;">
+              <div class="result-gauge-container">
+                <div class="circular-gauge" id="result-circular-gauge">
+                  <svg>
+                    <circle class="bg-circle" cx="80" cy="80" r="70"></circle>
+                    <circle class="progress-circle" cx="80" cy="80" r="70"></circle>
+                  </svg>
+                  <div class="gauge-text-overlay">
+                    <span class="gauge-percentage" id="result-gauge-pct">0%</span>
+                    <span class="gauge-status" id="result-gauge-status">Fake News</span>
+                  </div>
+                </div>
+                <div style="text-align: center;">
+                  <span style="font-size: 13px; color: var(--text-secondary);">AI Confidence: </span>
+                  <span id="result-confidence-badge" class="badge-status-pill badge-yes">High</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Media Previews with Heatmaps (Conditional display) -->
+          <div class="card" id="detect-media-analysis-card" style="display:none;">
+            <h3 class="card-title">Image / Video Forensic Map</h3>
+            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+              Our AI scan detected suspicious pixel distribution, inconsistent facial edges, or metadata edits. Overlay highlighting structural modifications:
+            </p>
+            <div class="media-preview-container" id="detect-forensic-container">
+              <img id="detect-forensic-image" class="media-preview-img" src="" alt="Analyzed media frame">
+              <div class="heatmap-overlay"></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;" id="detect-media-forensic-reasons">
+              <!-- forensic details -->
+            </div>
+          </div>
+
+          <!-- Section 2: Credibility Scores Detailed -->
+          <div class="card">
+            <h3 class="card-title">Credibility Vector Analysis</h3>
+            <div class="grid-2">
+              <div>
+                <div class="credibility-metric">
+                  <div class="metric-label-row">
+                    <span>Source Reputation</span>
+                    <span id="metric-val-source">0/100</span>
+                  </div>
+                  <div class="metric-bar-bg"><div class="metric-bar-fill primary" id="metric-bar-source"></div></div>
+                </div>
+                <div class="credibility-metric">
+                  <div class="metric-label-row">
+                    <span>Emotional Language Intensity</span>
+                    <span id="metric-val-emotional">0/100</span>
+                  </div>
+                  <div class="metric-bar-bg"><div class="metric-bar-fill danger" id="metric-bar-emotional"></div></div>
+                </div>
+                <div class="credibility-metric">
+                  <div class="metric-label-row">
+                    <span>Evidence / Citation Quality</span>
+                    <span id="metric-val-evidence">0/100</span>
+                  </div>
+                  <div class="metric-bar-bg"><div class="metric-bar-fill accent" id="metric-bar-evidence"></div></div>
+                </div>
+              </div>
+              <div>
+                <div class="credibility-metric">
+                  <div class="metric-label-row">
+                    <span>Fact Consistency Check</span>
+                    <span id="metric-val-consistency">0/100</span>
+                  </div>
+                  <div class="metric-bar-bg"><div class="metric-bar-fill accent" id="metric-bar-consistency"></div></div>
+                </div>
+                <div class="credibility-metric">
+                  <div class="metric-label-row">
+                    <span>Overall Credibility Index</span>
+                    <span id="metric-val-overall">0/100</span>
+                  </div>
+                  <div class="metric-bar-bg"><div class="metric-bar-fill primary" id="metric-bar-overall"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Suspicious Claim Highlighter -->
+          <div class="card">
+            <h3 class="card-title">Suspicious Claims Scanner</h3>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Click any underlined sentence below to inspect related fact checking evidence and suggested credible sources.</p>
+            <div class="annotated-article" id="detect-annotated-content">
+              <!-- Injected body text with spans -->
+            </div>
+            
+            <!-- Contextual Popup detail box -->
+            <div class="claim-card-detail" id="claim-detail-panel">
+              <span class="claim-tag tag-warning" id="claim-detail-tag">⚠ Extraordinary Claim</span>
+              <p id="claim-detail-text" style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">"Claim text here"</p>
+              <p id="claim-detail-explanation" style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">Explanation details...</p>
+              <div style="font-size:12px; color:var(--text-muted);">
+                <span>Suggested Trustworthy Sources: </span>
+                <span id="claim-detail-sources" style="font-weight:600; color:var(--primary-color);"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Bias & Sentiment Gauges -->
+          <div class="card">
+            <h3 class="card-title">Political Bias & Sentiment Detector</h3>
+            <div class="bias-gauge-container">
+              <div class="bias-gauge-item">
+                <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Political Orientation</span>
+                <div class="bias-meter">
+                  <div class="bias-meter-track"></div>
+                  <div class="bias-meter-needle" id="bias-needle-pol"></div>
+                </div>
+                <span id="bias-label-pol" style="font-size:14px; font-weight:700;">Neutral</span>
+              </div>
+              <div class="bias-gauge-item">
+                <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Clickbait Quotient</span>
+                <div class="bias-meter">
+                  <div class="bias-meter-track"></div>
+                  <div class="bias-meter-needle" id="bias-needle-click"></div>
+                </div>
+                <span id="bias-label-click" style="font-size:14px; font-weight:700;">Low</span>
+              </div>
+              <div class="bias-gauge-item">
+                <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Emotional Manipulation</span>
+                <div class="bias-meter">
+                  <div class="bias-meter-track"></div>
+                  <div class="bias-meter-needle" id="bias-needle-emo"></div>
+                </div>
+                <span id="bias-label-emo" style="font-size:14px; font-weight:700;">Moderate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Factual Claim Checker Table -->
+          <div class="card">
+            <h3 class="card-title">Factual Statement Dissection</h3>
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Extracted Claim</th>
+                    <th>Verdict</th>
+                    <th>Explanation & Details</th>
+                    <th>Primary Source Links</th>
+                  </tr>
+                </thead>
+                <tbody id="detect-fact-table-body">
+                  <!-- injected factual checks -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 6: Compare with Trusted Outlets -->
+          <div class="card">
+            <h3 class="card-title">Trusted Outlets Comparison Matrix</h3>
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Trusted Publisher</th>
+                    <th>Reported Coverage</th>
+                    <th>Stance Similarity</th>
+                    <th>Related Article Link</th>
+                  </tr>
+                </thead>
+                <tbody id="detect-compare-table-body">
+                  <!-- injected similar articles -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 7: Rumor Spread Tracker Graph View -->
+          <div class="card">
+            <h3 class="card-title">Rumor Ingress & Spread Tracker</h3>
+            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+              Visual timeline of how this topic traveled across digital media before being analyzed by TruthLens AI.
+            </p>
+            <div class="rumor-canvas-container">
+              <canvas class="rumor-canvas" id="results-rumor-canvas"></canvas>
+            </div>
+            <div class="grid-4" style="margin-top: 20px;">
+              <div style="border-right: 1px solid var(--divider-color); padding-right:16px;">
+                <span style="font-size:12px; color:var(--text-muted);">First Logged Date</span>
+                <p id="rumor-first-date" style="font-size:15px; font-weight:700; color:var(--text-primary); margin-top:4px;">N/A</p>
+              </div>
+              <div style="border-right: 1px solid var(--divider-color); padding-right:16px;">
+                <span style="font-size:12px; color:var(--text-muted);">Viral Speed index</span>
+                <p id="rumor-speed-idx" style="font-size:15px; font-weight:700; color:var(--danger-color); margin-top:4px;">High</p>
+              </div>
+              <div style="border-right: 1px solid var(--divider-color); padding-right:16px;">
+                <span style="font-size:12px; color:var(--text-muted);">Est. Shares / Reposts</span>
+                <p id="rumor-shares-count" style="font-size:15px; font-weight:700; color:var(--text-primary); margin-top:4px;">0</p>
+              </div>
+              <div>
+                <span style="font-size:12px; color:var(--text-muted);">Primary Ingress Platforms</span>
+                <p id="rumor-platforms" style="font-size:14px; font-weight:700; color:var(--warning-color); margin-top:4px;">WhatsApp, Twitter</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 3. TRENDING NEWS VERIFICATION VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="trending-page">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <p style="font-size: 14px; color: var(--text-secondary);">Real-time catalog of claims sweeping social circles, updated dynamically.</p>
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-trending" style="display: flex; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 24 24" style="width:16px; height:16px; stroke:currentColor; stroke-width:2; fill:none;"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Refresh List
+          </button>
+        </div>
+        
+        <div class="grid-3" id="trending-news-grid">
+          <!-- Dynamically filled trending cards -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 4. NEWS HISTORY VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="history-page">
+        <div class="card" style="margin-bottom: 24px;">
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <div class="form-group" style="flex-grow: 2; margin-bottom: 0;">
+              <input type="text" id="history-search-input" class="form-input" placeholder="Search past articles, headlines, or URL fragments...">
+            </div>
+            <div class="form-group" style="flex-grow: 1; margin-bottom: 0;">
+              <select id="history-filter-select" class="form-input" style="height: 100%;">
+                <option value="all">All Verdicts</option>
+                <option value="fake">Fake News Only</option>
+                <option value="credible">Credible Articles</option>
+                <option value="misleading">Misleading Content</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary" id="history-clear-btn">Clear Filter</button>
+          </div>
+        </div>
+
+        <div class="timeline" id="history-timeline-container">
+          <!-- Historical cards injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 5. COMMUNITY VERIFICATION VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="community-page">
+        <div class="grid-2">
+          
+          <!-- Column 1: Verification Voting Form & Chart -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="card">
+              <h3 class="card-title">Community Consensus Matrix</h3>
+              <div style="display:flex; justify-content:center; align-items:center; height:200px;">
+                <canvas id="community-votes-canvas" style="max-width:200px; max-height:200px;"></canvas>
+              </div>
+              <div style="display: flex; justify-content: space-around; font-size:14px; font-weight:600; margin-top:16px;">
+                <span style="color: var(--accent-color);" id="community-reliable-label">Reliable: 72%</span>
+                <span style="color: var(--danger-color);" id="community-misleading-label">Misleading: 28%</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">Log Your Verification Verdict</h3>
+              <form id="community-submit-form" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="community-claim-select" class="form-label">Select Claim / News Link</label>
+                  <select id="community-claim-select" class="form-input">
+                    <!-- Loaded dynamically -->
+                  </select>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                  <button type="button" class="btn btn-secondary btn-vote-reliable" style="flex:1; border-color:var(--accent-color); color:var(--accent-color);" data-verdict="reliable">Vote Reliable</button>
+                  <button type="button" class="btn btn-secondary btn-vote-misleading" style="flex:1; border-color:var(--danger-color); color:var(--danger-color);" data-verdict="misleading">Vote Misleading</button>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="community-evidence-link" class="form-label">Attach Supporting Evidence URL</label>
+                  <input type="url" id="community-evidence-link" class="form-input" placeholder="https://reuters.com/link-to-proof">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="community-comment-text" class="form-label">Evidence / Argument Description</label>
+                  <textarea id="community-comment-text" class="form-textarea" rows="3" placeholder="Provide reasoning based on your attached link..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Publish to Community Board</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Column 2: Discussions Forum Board -->
+          <div class="card" style="display:flex; flex-direction:column; height: 100%; max-height:700px;">
+            <h3 class="card-title">Verification Debates & Log</h3>
+            <div style="flex-grow:1; overflow-y:auto; display:flex; flex-direction:column; gap:16px; padding:10px 0;" id="community-comments-list">
+              <!-- comments inserted -->
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 6. AI EXPLANATION CHATBOT VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="chatbot-page">
+        <div class="chatbot-container">
+          <div class="chat-header">
+            <div class="chat-bot-info">
+              <div class="bot-avatar">
+                <svg viewBox="0 0 24 24" style="width:20px; height:20px; stroke:currentColor; stroke-width:2; fill:none;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary);">Fact-Check Investigator Bot</h3>
+                <span style="font-size: 11px; color: var(--accent-color); font-weight:600;">● Online • Powered by TruthLens LLM</span>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="chat-clear-btn" style="padding: 6px 12px; font-size:12px;">Clear Chat</button>
+          </div>
+
+          <!-- Message box -->
+          <div class="chat-messages" id="chat-messages-container">
+            <div class="chat-msg bot-msg">
+              <div class="chat-bubble">
+                Hello! I am your AI Fact-Checking Assistant. You can ask me detail-based questions regarding any analyzed articles, source credibility, bias explanation, or ask me to translate details.
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested queries chips -->
+          <div class="suggested-queries" id="chat-suggestions-box">
+            <span class="suggestion-tag">Why is the Cancer Cure claim suspicious?</span>
+            <span class="suggestion-tag">Explain the bias level in simple words.</span>
+            <span class="suggestion-tag">Can I trust Reuters as a source?</span>
+            <span class="suggestion-tag">Summarize in Hindi.</span>
+          </div>
+
+          <!-- Text area typing bar -->
+          <form class="chat-input-area" id="chat-form">
+            <input type="text" id="chat-user-input" class="form-input chat-input" placeholder="Ask details about a claim (e.g. 'Show me the evidence')..." required>
+            <button type="submit" class="btn btn-primary" style="padding: 0 20px;">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 7. USER DASHBOARD VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="dashboard-page">
+        <!-- Top metrics row -->
+        <div class="grid-4" id="dashboard-counters">
+          <div class="card">
+            <h4 style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Total Analyzed</h4>
+            <span id="dash-stat-total" style="font-size: 28px; font-family: var(--font-heading); font-weight: 700; color: var(--primary-color);">0</span>
+          </div>
+          <div class="card">
+            <h4 style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Fake News Intercepts</h4>
+            <span id="dash-stat-fake" style="font-size: 28px; font-family: var(--font-heading); font-weight: 700; color: var(--danger-color);">0</span>
+          </div>
+          <div class="card">
+            <h4 style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Credible News Saved</h4>
+            <span id="dash-stat-credible" style="font-size: 28px; font-family: var(--font-heading); font-weight: 700; color: var(--accent-color);">0</span>
+          </div>
+          <div class="card">
+            <h4 style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Average Credibility Score</h4>
+            <span id="dash-stat-avg" style="font-size: 28px; font-family: var(--font-heading); font-weight: 700; color: var(--warning-color);">0%</span>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Card 1: Dashboard Chart (Canvas) -->
+          <div class="card">
+            <h3 class="card-title">Activity Timeline Overview</h3>
+            <div style="height: 250px; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px;" id="dashboard-chart-bars">
+              <!-- Visualized bars injected -->
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-top:8px;">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Recent searches & saves -->
+          <div class="card" style="display:flex; flex-direction:column;">
+            <h3 class="card-title">Saved Articles & Monitor Board</h3>
+            <div style="flex-grow:1; display:flex; flex-direction:column; gap:12px;" id="dashboard-saved-list">
+              <!-- Inject items -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 8. PROFILE & GAMIFICATION VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="profile-page">
+        <div class="grid-3">
+          
+          <!-- Column 1: Points & current badge card -->
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+            <div class="avatar" style="width: 80px; height: 80px; font-size: 32px;" id="profile-main-avatar">D</div>
+            <div>
+              <h3 id="profile-username" style="font-family:var(--font-heading); font-size:20px; font-weight:700;">Dipti</h3>
+              <p id="profile-badge-title" style="font-size:13px; color:var(--accent-color); font-weight:700;">Expert Fact Checker</p>
+            </div>
+            <div style="width: 100%; border-top: 1px solid var(--divider-color); padding-top: 16px;">
+              <span style="font-size: 12px; color: var(--text-secondary);">Total Reward Earnings</span>
+              <p id="profile-reward-points" style="font-size: 28px; font-family: var(--font-heading); font-weight: 800; color: var(--primary-color);">450 pts</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Leaderboard -->
+          <div class="card" style="grid-column: span 2;">
+            <h3 class="card-title">
+              <svg viewBox="0 0 24 24" style="width:20px; stroke:var(--warning-color); fill:none; stroke-width:2;"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+              Weekly Investigator Leaderboard
+            </h3>
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>User Profile Name</th>
+                    <th>Truth Points</th>
+                    <th>Fact Check Count</th>
+                  </tr>
+                </thead>
+                <tbody id="profile-leaderboard-body">
+                  <!-- dynamically filled leaderboard -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Earned Badges Grid -->
+        <div class="card">
+          <h3 class="card-title">Earned Investigator Badges</h3>
+          <div class="badge-grid" id="profile-badges-container">
+            <!-- badge entries -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 9. ABOUT VIEW -->
+      <!-- ============================================== -->
+      <section class="page-view" id="about-page">
+        <div class="card">
+          <h2 style="font-family: var(--font-heading); font-size:24px; font-weight:700; margin-bottom:16px;">About TruthLens AI</h2>
+          <p style="font-size:14px; line-height:1.7; color:var(--text-secondary); margin-bottom:16px;">
+            TruthLens AI is a production-quality SaaS application built to counter online mis- and disinformation. Combining multiple forensic layers, TruthLens AI analyzes content from multiple directions:
+          </p>
+          <div class="grid-3" style="margin: 24px 0;">
+            <div class="card" style="background: rgba(37, 99, 235, 0.05);">
+              <h4 style="font-size:14px; font-weight:700; margin-bottom:8px; color:var(--primary-color);">Semantic Analysis</h4>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Evaluates linguistic structures for emotional manipulation, lack of citations, and sensationalist claims.</p>
+            </div>
+            <div class="card" style="background: rgba(16, 185, 129, 0.05);">
+              <h4 style="font-size:14px; font-weight:700; margin-bottom:8px; color:var(--accent-color);">Media Forensics</h4>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Scans uploaded images and video frames to determine editing history, metadata alterations, and deepfake probabilities.</p>
+            </div>
+            <div class="card" style="background: rgba(245, 158, 11, 0.05);">
+              <h4 style="font-size:14px; font-weight:700; margin-bottom:8px; color:var(--warning-color);">Community Verification</h4>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Utilizes peer review consensus logging and public reference mapping to double-check AI verdicts.</p>
+            </div>
+          </div>
+          <p style="font-size:14px; line-height:1.7; color:var(--text-secondary);">
+            This client dashboard is responsive, lightweight, accessible (using native HTML controls and labels), and complies with modern web guidelines utilizing CSS transitions and state management router nodes.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- AUTHENTICATION OVERLAY MODAL -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+        <h3 id="auth-modal-title" style="font-family:var(--font-heading); font-size:20px; font-weight:700;">Sign in to TruthLens AI</h3>
+        <button id="auth-modal-close" style="background:none; border:none; cursor:pointer;" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" style="width:20px; height:20px; stroke:var(--text-secondary); stroke-width:2; fill:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      
+      <form id="auth-credentials-form">
+        <div class="form-group">
+          <label for="auth-email" class="form-label">Email Address</label>
+          <input type="email" id="auth-email" class="form-input" placeholder="dipti@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-password" class="form-label">Password</label>
+          <input type="password" id="auth-password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;" id="auth-submit-btn">Login</button>
+      </form>
+
+      <div style="margin: 16px 0; text-align:center; font-size:12px; color:var(--text-muted); position:relative;">
+        <span style="background: var(--bg-secondary); padding:0 8px; position:relative; z-index:2;">OR</span>
+        <div style="position:absolute; top:50%; left:0; width:100%; height:1px; background:var(--divider-color); z-index:1;"></div>
+      </div>
+
+      <button class="btn btn-secondary" id="auth-google-btn" style="width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+        <!-- Google Icon -->
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;">
+          <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.12 1 1.16 5.92 1.16 12s4.96 11 11.08 11c6.39 0 10.63-4.49 10.63-10.82 0-.73-.08-1.285-.175-1.895H12.24z"/>
+        </svg>
+        Sign in with Google
+      </button>
+
+      <div style="margin-top:20px; text-align:center; font-size:13px;">
+        <span id="auth-modal-switch-text" style="color:var(--text-secondary);">New to TruthLens? </span>
+        <a id="auth-modal-switch-btn" style="color:var(--primary-color); cursor:pointer; font-weight:600;">Create account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOAD SCRIPTS -->
+  <!-- Firebase Scripts via CDN -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/detect.js"></script>
+  <script type="module" src="js/chatbot.js"></script>
+  <script type="module" src="js/history.js"></script>
+  <script type="module" src="js/community.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+  <script type="module" src="js/rumor-tracker.js"></script>
+  <!-- Main SPA coordinator -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
